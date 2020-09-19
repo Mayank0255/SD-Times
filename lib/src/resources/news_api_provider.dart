@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' show Client;
 import '../models/item_model.dart';
 import 'dart:async';
-import 'repo.dart';
+import 'repository.dart';
 
 final _root = 'https://hacker-news.firebaseio.com/v0';
 
