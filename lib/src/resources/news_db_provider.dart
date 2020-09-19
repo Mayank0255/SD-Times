@@ -4,8 +4,9 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../models/item_model.dart';
+import 'repo.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source {
   Database db;
 
   void init() async {
@@ -54,5 +55,10 @@ class NewsDbProvider {
 
   Future<int> addItem(ItemModel item) {
     return db.insert('Items', item.toMapForDb());
+  }
+
+  // Todo - store and fetch top ids
+  Future<List<int>> fetchTopIds() {
+    return null;
   }
 }
