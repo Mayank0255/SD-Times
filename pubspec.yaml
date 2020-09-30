@@ -34,10 +34,16 @@ dependencies:
   http: ^0.12.2
   rxdart: ^0.24.1
   flutter_html: ^1.0.2
+  flutter_launcher_icons: ^0.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/SD-Times-Icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
