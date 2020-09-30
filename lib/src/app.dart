@@ -11,6 +11,7 @@ class App extends StatelessWidget {
         child: MaterialApp(
           title: 'News!',
           onGenerateRoute: routes,
+          color: Colors.white,
         ),
       ),
     );

@@ -14,8 +14,10 @@ class NewsList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
+        backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
       ),
       body: buildList(bloc),
+      backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
     );
   }
 
