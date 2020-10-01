@@ -4,23 +4,43 @@ import 'refresh.dart';
 import '../blocs/stories_provider.dart';
 
 class NewsTab extends StatefulWidget {
-  createState() {
-    return NewsTabState();
-  }
+  final String listType;
+
+  NewsTab({this.listType});
+
+  @override
+  _NewsTabState createState() => _NewsTabState();
 }
 
-class NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
+class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
   Widget build(context) {
     super.build(context);
     final bloc = StoriesProvider.of(context);
+    Stream<List<int>> streamType;
 
-    bloc.fetchTopIds();
+    switch(widget.listType) {
+      case 'newest': {
+        bloc.fetchNewestIds();
+        streamType = bloc.newestIds;
+      }
+      break;
+      case 'best': {
+        bloc.fetchBestIds();
+        streamType = bloc.bestIds;
+      }
+      break;
+      case 'top': {
+        bloc.fetchTopIds();
+        streamType = bloc.topIds;
+      }
+      break;
+    }
 
     return StreamBuilder(
-      stream: bloc.topIds,
+      stream: streamType,
       builder: (context, AsyncSnapshot<List<int>>snapshot) {
         if (!snapshot.hasData) {
           return Center(

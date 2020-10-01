@@ -18,9 +18,9 @@ class NewsList extends StatelessWidget {
           shadowColor: Colors.black,
         ),
         body: TabBarView(children: [
-          Icon(Icons.movie),
-          Icon(Icons.games),
-          NewsTab(),
+          NewsTab(listType: 'newest'),
+          NewsTab(listType: 'best'),
+          NewsTab(listType: 'top'),
         ],),
         backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
       ),
