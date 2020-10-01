@@ -16,6 +16,20 @@ class NewsApiProvider implements Source {
     return ids.cast<int>();
   }
 
+  Future<List<int>> fetchNewestIds() async {
+    final response = await client.get('$_root/newstories.json');
+    final ids = json.decode(response.body);
+
+    return ids.cast<int>();
+  }
+
+  Future<List<int>> fetchBestIds() async {
+    final response = await client.get('$_root/beststories.json');
+    final ids = json.decode(response.body);
+
+    return ids.cast<int>();
+  }
+
   Future<ItemModel> fetchItem(int id) async {
     final response = await client.get('$_root/item/$id.json');
     final parsedJson = json.decode(response.body);

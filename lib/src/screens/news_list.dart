@@ -10,9 +10,9 @@ class NewsList extends StatelessWidget {
         appBar: AppBar(
           title: Text('Top News'),
           bottom: TabBar(tabs: [
-            Tab(text: "One",),
-            Tab(text: "Two",),
-            Tab(text: "Three",),
+            Tab(text: 'Newest',),
+            Tab(text: 'Best',),
+            Tab(text: 'Top',),
           ],),
           backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
           shadowColor: Colors.black,

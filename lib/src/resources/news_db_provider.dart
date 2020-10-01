@@ -14,9 +14,11 @@ class NewsDbProvider implements Source, Cache {
   }
 
   // Todo - store and fetch top ids
-  Future<List<int>> fetchTopIds() {
-    return null;
-  }
+  Future<List<int>> fetchTopIds() => null;
+
+  Future<List<int>> fetchNewestIds() => null;
+
+  Future<List<int>> fetchBestIds() => null;
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
