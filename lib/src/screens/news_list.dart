@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import '../blocs/stories_provider.dart';
-import '../widgets/news_list_tile.dart';
-import '../widgets/refresh.dart';
-
+import '../widgets/news_tab.dart';
 
 class NewsList extends StatelessWidget {
   Widget build(context) {
@@ -23,52 +20,10 @@ class NewsList extends StatelessWidget {
         body: TabBarView(children: [
           Icon(Icons.movie),
           Icon(Icons.games),
-          BuildList(),
+          NewsTab(),
         ],),
         backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
       ),
-    );
-  }
-}
-
-class BuildList extends StatefulWidget {
-  createState() {
-    return BuildListState();
-  }
-}
-
-class BuildListState extends State<BuildList> with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
-  Widget build(context) {
-    super.build(context);
-    final bloc = StoriesProvider.of(context);
-
-    bloc.fetchTopIds();
-
-    return StreamBuilder(
-      stream: bloc.topIds,
-      builder: (context, AsyncSnapshot<List<int>>snapshot) {
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        return Refresh(
-          child: ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, int index) {
-              bloc.fetchItem(snapshot.data[index]);
-
-              return NewsListTile(
-                itemId: snapshot.data[index]
-              );
-            },
-          ),
-        );
-      },
     );
   }
 }
