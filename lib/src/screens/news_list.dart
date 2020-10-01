@@ -22,25 +22,23 @@ class NewsList extends StatelessWidget {
             ),
             child: Image.asset('assets/SD-Splash-Icon.png'),
           ),
-          elevation: 0,
+          elevation: 0.1,
           bottom: TabBar(
-            unselectedLabelColor: Color.fromRGBO(98, 110, 227, 1.0),
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicator: BoxDecoration(
-              color: Color.fromRGBO(98, 110, 227, 1.0)
-            ),
+            unselectedLabelColor: Colors.white,
+            indicatorColor: Color.fromRGBO(98, 110, 227, 1.0),
             labelStyle: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.w400,
               fontFamily: 'Ubuntu'
             ),
+            labelColor: Color.fromRGBO(98, 110, 227, 1.0),
             tabs: [
               Tab(text: 'Best',),
               Tab(text: 'Top',),
               Tab(text: 'Newest',),
             ],
             ),
-          backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
+          backgroundColor: Color(0xFF001528),
           shadowColor: Colors.black,
         ),
         body: TabBarView(children: [
@@ -48,7 +46,7 @@ class NewsList extends StatelessWidget {
           NewsTab(listType: 'top'),
           NewsTab(listType: 'newest'),
         ],),
-        backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
+        backgroundColor: Color(0xFF001528),
       ),
     );
   }

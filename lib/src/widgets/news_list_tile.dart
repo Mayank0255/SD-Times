@@ -26,40 +26,55 @@ class NewsListTile extends StatelessWidget {
               return LoadingContainer();
             }
 
-            return buildTile(context, itemSnapshot.data);
+            return buildCard(context, itemSnapshot.data);
           },
         );
       }
     );
   }
 
+  Widget buildCard(BuildContext context, ItemModel item) {
+    return Card(
+      elevation: 10.0,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      child: Container(
+        decoration: BoxDecoration(color: Color(0xFF02203C)),
+        child: buildTile(context, item),
+      ),
+    );
+  }
+
   Widget buildTile(BuildContext context, ItemModel item) {
-    return Column(
-      children: [
-        ListTile(
-          // isThreeLine: true,
-          onTap: () {
-            Navigator.pushNamed(context, '/${item.id}');
-          },
-          title: Text(item.title, style: TextStyle(color: Color.fromRGBO(98, 110, 227, 1.0), fontFamily: 'Ubuntu', fontWeight: FontWeight.w500)),
-          subtitle: Text('${item.score} points', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.8), fontFamily: 'Ubuntu', fontWeight: FontWeight.w400)),
-          trailing: Column(
-            children: [
-              Padding(padding: EdgeInsets.only(top: 10),),
-              Icon(Icons.mode_comment, color: Color.fromRGBO(98, 110, 227, 1.0)),
-              Text('${item.descendants}', style: TextStyle(color: Color(0xFFF92672)),)
-            ]
-          ),
-          contentPadding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 32.0, right: 16.0),
-        ),
-        Divider(
-          height: 10.0,
-          color: Color.fromRGBO(187, 204, 221, 0.8),
-          thickness: 1,
-          indent: 17.0,
-          endIndent: 17.0,
-        )
-      ],
+    return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, '/${item.id}');
+      },
+      contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      leading: Container(
+        padding: EdgeInsets.only(right: 12.0),
+        decoration: new BoxDecoration(
+          border: new Border(
+            right: new BorderSide(width: 1.0, color: Colors.white24))),
+            child: Column(
+              children: [
+                Padding(padding: EdgeInsets.only(top: 8),),
+                Icon(Icons.mode_comment_outlined, color: Colors.white),
+                Text('${item.descendants}', style: TextStyle(color: Colors.white))
+              ],
+            ),
+      ),
+      title: Text(
+        item.title,
+        style: TextStyle(color: Colors.white, fontFamily: 'Ubuntu', fontWeight: FontWeight.w600),
+      ),
+      subtitle: Row(
+        children: <Widget>[
+          Icon(Icons.linear_scale, color: Color(0xFF626EE3)),
+          Text(' ${item.score} points', style: TextStyle(color: Colors.white, fontFamily: 'Ubuntu', fontWeight: FontWeight.w400))
+        ],
+      ),
+      trailing:
+        Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0)
     );
   }
 }

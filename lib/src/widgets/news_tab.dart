@@ -50,6 +50,7 @@ class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
 
         return Refresh(
           child: ListView.builder(
+            padding: EdgeInsets.only(top: 10.0),
             itemCount: snapshot.data.length,
             itemBuilder: (context, int index) {
               bloc.fetchItem(snapshot.data[index]);
