@@ -7,38 +7,39 @@ class NewsList extends StatelessWidget {
       length: 3, 
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Top News'),
+          title: Text(
+            'News Feed',
+            style: TextStyle(
+              fontFamily: 'Poppins', 
+              fontWeight: FontWeight.w500,
+              fontSize: 22.0
+            ),
+          ),
+          leading: Padding(
+            padding: EdgeInsets.only(
+              top: 12.0,
+              bottom: 12.0
+            ),
+            child: Image.asset('assets/SD-Splash-Icon.png'),
+          ),
           elevation: 0,
           bottom: TabBar(
             unselectedLabelColor: Color.fromRGBO(98, 110, 227, 1.0),
             indicatorSize: TabBarIndicatorSize.tab,
             indicator: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
               color: Color.fromRGBO(98, 110, 227, 1.0)
             ),
+            labelStyle: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Poppins'
+            ),
             tabs: [
-              Tab(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Best'),
-                ),
-              ),
-              Tab(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Top'),
-                ),
-              ),
-              Tab(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Newest'),
-                ),
-              ),
-            ],),
+              Tab(text: 'Best',),
+              Tab(text: 'Top',),
+              Tab(text: 'Newest',),
+            ],
+            ),
           backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
           shadowColor: Colors.black,
         ),
