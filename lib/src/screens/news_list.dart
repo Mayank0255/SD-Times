@@ -6,22 +6,47 @@ import '../widgets/refresh.dart';
 
 class NewsList extends StatelessWidget {
   Widget build(context) {
-    final bloc = StoriesProvider.of(context);
+    return DefaultTabController(
+      length: 3, 
+      child: Scaffold(
 
-    // Temporary
-    bloc.fetchTopIds();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Top News'),
-        backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
+        appBar: AppBar(
+          title: Text('Top News'),
+          bottom: TabBar(tabs: [
+            Tab(text: "One",),
+            Tab(text: "Two",),
+            Tab(text: "Three",),
+          ],),
+          backgroundColor: Color.fromRGBO(21, 49, 75, 1.0),
+          shadowColor: Colors.black,
+        ),
+        body: TabBarView(children: [
+          Icon(Icons.movie),
+          Icon(Icons.games),
+          BuildList(),
+        ],),
+        backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
       ),
-      body: buildList(bloc),
-      backgroundColor: Color.fromRGBO(0, 21, 40, 1.0),
     );
   }
+}
 
-  Widget buildList(StoriesBloc bloc) {
+class BuildList extends StatefulWidget {
+  createState() {
+    return BuildListState();
+  }
+}
+
+class BuildListState extends State<BuildList> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  Widget build(context) {
+    super.build(context);
+    final bloc = StoriesProvider.of(context);
+
+    bloc.fetchTopIds();
+
     return StreamBuilder(
       stream: bloc.topIds,
       builder: (context, AsyncSnapshot<List<int>>snapshot) {
