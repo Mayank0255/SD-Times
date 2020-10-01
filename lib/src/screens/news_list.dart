@@ -10,8 +10,8 @@ class NewsList extends StatelessWidget {
           title: Text(
             'News Feed',
             style: TextStyle(
-              fontFamily: 'Poppins', 
-              fontWeight: FontWeight.w500,
+              fontFamily: 'Ubuntu', 
+              fontWeight: FontWeight.w600,
               fontSize: 22.0
             ),
           ),
@@ -30,9 +30,9 @@ class NewsList extends StatelessWidget {
               color: Color.fromRGBO(98, 110, 227, 1.0)
             ),
             labelStyle: TextStyle(
-              fontSize: 17.0,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'Poppins'
+              fontSize: 20.0,
+              fontWeight: FontWeight.w400,
+              fontFamily: 'Ubuntu'
             ),
             tabs: [
               Tab(text: 'Best',),
