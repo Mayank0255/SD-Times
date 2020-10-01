@@ -35,8 +35,8 @@ class NewsListTile extends StatelessWidget {
 
   Widget buildCard(BuildContext context, ItemModel item) {
     return Card(
-      elevation: 10.0,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      elevation: 12.0,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),  
       child: Container(
         decoration: BoxDecoration(color: Color(0xFF02203C)),
         child: buildTile(context, item),

@@ -44,7 +44,9 @@ class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
       builder: (context, AsyncSnapshot<List<int>>snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF626EE3)),
+            ),
           );
         }
 
@@ -60,6 +62,7 @@ class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
               );
             },
           ),
+          listType: widget.listType,
         );
       },
     );

@@ -26,7 +26,11 @@ class NewsDetail extends StatelessWidget {
       builder: 
         (context, AsyncSnapshot<Map<int, Future<ItemModel>>> snapshot) {
           if (!snapshot.hasData) {
-            return Text('Loading...');
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF626EE3)),
+              ),
+            );
           }
 
           final itemFuture = snapshot.data[itemId];
