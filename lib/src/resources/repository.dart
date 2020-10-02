@@ -12,8 +12,6 @@ class Repository {
     newsDbProvider,
   ];
 
-  // Iterate over sources when dbprovider
-  // get fetchTopIds implemented
   Future<List<int>> fetchTopIds() {
     return sources[1].fetchTopIds();
   }
@@ -24,6 +22,14 @@ class Repository {
 
   Future<List<int>> fetchBestIds() {
     return sources[1].fetchBestIds();
+  }
+
+  Future<List<int>> fetchJobIds() {
+    return sources[1].fetchJobIds();
+  }
+
+  Future<List<int>> fetchQuestionIds() {
+    return sources[1].fetchQuestionIds();
   }
 
   Future<ItemModel> fetchItem(int id) async {
@@ -57,6 +63,8 @@ abstract class Source {
   Future<List<int>> fetchTopIds();
   Future<List<int>> fetchNewestIds();
   Future<List<int>> fetchBestIds();
+  Future<List<int>> fetchJobIds();
+  Future<List<int>> fetchQuestionIds();
   Future<ItemModel> fetchItem(int id);
 }
 

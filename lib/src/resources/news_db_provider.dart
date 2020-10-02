@@ -20,6 +20,10 @@ class NewsDbProvider implements Source, Cache {
 
   Future<List<int>> fetchBestIds() => null;
 
+  Future<List<int>> fetchJobIds() => null;
+
+  Future<List<int>> fetchQuestionIds() => null;
+
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items1.db");

@@ -100,7 +100,7 @@ class _NewsListState extends State<NewsList> {
         (currentIndex == 0)
         ? 'News Feed'
         : (currentIndex == 1)
-        ? 'Question & Answers'
+        ? 'Questions'
         : 'Jobs',
         style: TextStyle(
           fontFamily: 'Ubuntu', 
