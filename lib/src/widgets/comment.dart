@@ -22,12 +22,17 @@ class Comment extends StatelessWidget {
         final item = snapshot.data;
 
         final children = <Widget>[
-          ListTile(
-            title: Text(parseHtmlString(item.text), style: TextStyle(color: Colors.white70),),
-            subtitle: item.by == '' ? Text('[Deleted by moderator]') : Text(item.by),
-            contentPadding: EdgeInsets.only(
-              right: 16.0,
-              left: depth * 16.0,
+          Card(
+            margin: EdgeInsets.all(0),
+            elevation: 10.0,
+            child: ListTile(
+              title: Text(parseHtmlString(item.text), style: TextStyle(color: Colors.white70),),
+              subtitle: item.by == '' ? Text('[Deleted by moderator]') : Text(item.by),
+              contentPadding: EdgeInsets.only(
+                right: 16.0,
+                left: depth * 16.0,
+              ),
+              tileColor: Color(0xFF163450),
             ),
           ),
           Divider()

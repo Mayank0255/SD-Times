@@ -37,6 +37,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.0
   bubble_bottom_bar: ^1.2.0
   url_launcher: ^5.7.2
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

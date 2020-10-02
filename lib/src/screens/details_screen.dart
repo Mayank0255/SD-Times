@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../blocs/comments_provider.dart';
 import '../models/item_model.dart';
 import '../widgets/comment.dart';
+import '../helpers/time_ago.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int itemId;
@@ -77,18 +79,94 @@ class DetailsScreen extends StatelessWidget {
   }
 
   Widget buildTitle(ItemModel item) {
+    // print(item.type);
+    // print(item.by);
+    // print(item.text);
+    // print(item.score);
+    // print(item.url);
     return Container(
-      margin: EdgeInsets.all(10.0),
+      margin: EdgeInsets.only(top: 16.0, left: 10.0, right: 10.0, bottom: 10.0),
       alignment: Alignment.topCenter,
-      child: Text(
-        item.title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.white
-        ),
+      child: Column(
+        children: [
+          Container(
+            child: Text(
+              item.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22.0,
+                fontFamily: 'Ubuntu',
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF6774e4)
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 8.0),
+            width: 360,
+            child: Text(
+              '- Posted by ${item.by} • ${timeAgo(item.time).toLowerCase()} • ${item.score} points',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontFamily: 'Ubuntu',
+                fontWeight: FontWeight.w400,
+                color: Color.fromRGBO(255, 255, 255, 0.8)
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 16.0),
+            width: 400,
+            child: Row(
+              children: [
+                Icon(Icons.mode_comment, color: Color.fromRGBO(255, 255, 255, 0.8),),
+                Text(
+                  '  ${item.descendants} Comments', 
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 0.8), 
+                    fontWeight: FontWeight.w700, 
+                    fontFamily: 'Poppins',
+                    fontSize: 16.0
+                  ),
+                ),
+                Container(
+                  width: 60.0,
+                  child: Text(
+                    '  ', 
+                    textAlign: TextAlign.center, 
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.8),
+                      fontSize: 30.0
+                    ),
+                  ),
+                ),
+                FlatButton.icon(
+                  onPressed: () async {
+                    var url = item.url;
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: Icon(Icons.link, color: Color.fromRGBO(255, 255, 255, 0.8), size: 30.0),
+                  label: Text(
+                    'Open Link', 
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.8),
+                      fontWeight: FontWeight.w700, 
+                      fontFamily: 'Poppins',
+                      fontSize: 16.0
+                    ),
+                  ),
+                ),
+              ],
+            )
+          )
+        ],        
       ),
+      color: Color(0xFF001528),
     );
   }
 }
