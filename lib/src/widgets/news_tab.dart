@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'news_list_tile.dart';
 import 'refresh.dart';

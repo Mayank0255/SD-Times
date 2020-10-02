@@ -35,22 +35,20 @@ class _NewsListState extends State<NewsList> {
     );
   }
 
-  Widget buildNewsPage() {
-    return TabBarView(
-      children: [
-        NewsTab(listType: 'best'),
-        NewsTab(listType: 'top'),
-        NewsTab(listType: 'newest'),
-      ],
-    );
-  }
-
   Widget buildBody() {
-    return (currentIndex == 0)
-      ? buildNewsPage()
-      : (currentIndex == 1)
-      ? NewsTab(listType: 'question')
-      : NewsTab(listType: 'job');
+    if (currentIndex == 0) {
+      return TabBarView(
+        children: [
+          NewsTab(listType: 'best'),
+          NewsTab(listType: 'top'),
+          NewsTab(listType: 'newest'),
+        ],
+      );
+    } else if (currentIndex == 1) {
+      return NewsTab(listType: 'question');
+    } else {
+      return NewsTab(listType: 'job');
+    }
   }
 
   Widget bottomAppBar() {

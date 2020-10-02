@@ -1,8 +1,10 @@
+import 'dart:math';
 import 'package:SD_Times/src/blocs/stories_provider.dart';
 import 'package:flutter/material.dart';
 import '../blocs/stories_provider.dart';
 import '../models/item_model.dart';
 import '../widgets/loading_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsListTile extends StatelessWidget {
   final int itemId;
@@ -46,9 +48,31 @@ class NewsListTile extends StatelessWidget {
   }
 
   Widget buildTile(BuildContext context, ItemModel item) {
+    final children = <Widget>[];
+    
+    children.add(Padding(padding: EdgeInsets.only(top: 8),));
+    if (item.descendants == null) {
+      children.addAll([
+        Padding(padding: EdgeInsets.only(top: 8),),
+        Transform.rotate(
+          angle: pi / 2,
+          child: Icon(Icons.link, color: Colors.white)
+      )]);
+    } else {
+      children.addAll([
+        Icon(Icons.mode_comment_outlined, color: Colors.white),
+        Text('${item.descendants}', style: TextStyle(color: Colors.white))
+      ]);
+    }
+
     return ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, '/${item.id}');
+      onTap: () async {
+        var url = item.url;
+        if (await canLaunch(url)) {
+          await launch(url);
+        } else {
+          throw 'Could not launch $url';
+        }
       },
       contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       leading: Container(
@@ -57,11 +81,7 @@ class NewsListTile extends StatelessWidget {
           border: new Border(
             right: new BorderSide(width: 1.0, color: Colors.white24))),
             child: Column(
-              children: [
-                Padding(padding: EdgeInsets.only(top: 8),),
-                Icon(Icons.mode_comment_outlined, color: Colors.white),
-                Text('${item.descendants != null ? item.descendants : 0}', style: TextStyle(color: Colors.white))
-              ],
+              children: children,
             ),
       ),
       title: Text(
@@ -71,7 +91,7 @@ class NewsListTile extends StatelessWidget {
       subtitle: Row(
         children: <Widget>[
           Icon(Icons.linear_scale, color: Color(0xFF626EE3)),
-          Text(' ${item.score} points', style: TextStyle(color: Colors.white, fontFamily: 'Ubuntu', fontWeight: FontWeight.w400))
+          Text((item.descendants == null) ? ' ${item.by}' : ' ${item.score} points', style: TextStyle(color: Colors.white, fontFamily: 'Ubuntu', fontWeight: FontWeight.w400))
         ],
       ),
       trailing:
