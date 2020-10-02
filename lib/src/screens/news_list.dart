@@ -1,18 +1,81 @@
 import 'package:flutter/material.dart';
 import '../widgets/news_tab.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 
-class NewsList extends StatelessWidget {
+class NewsList extends StatefulWidget {
+  @override
+  _NewsListState createState() => _NewsListState();
+}
+
+class _NewsListState extends State<NewsList> {
+  int currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+
+    currentIndex = 0;
+  }
+
+  changePage(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   Widget build(context) {
     return DefaultTabController(
       length: 3, 
       child: Scaffold(
         appBar: topAppBar(),
-        body: TabBarView(children: [
-          NewsTab(listType: 'best'),
-          NewsTab(listType: 'top'),
-          NewsTab(listType: 'newest'),
-        ],),
         backgroundColor: Color(0xFF001528),
+        bottomNavigationBar: BubbleBottomBar(
+          opacity: 0.2,
+          backgroundColor: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+          currentIndex: currentIndex,
+          hasInk: true,
+          inkColor: Colors.black12,
+          hasNotch: true,
+          onTap: changePage,
+          items: <BubbleBottomBarItem>[
+            BubbleBottomBarItem(
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.dashboard, color: Colors.black,),
+              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
+              title: Text("Home"),
+            ),
+            BubbleBottomBarItem(
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.dashboard, color: Colors.black,),
+              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
+              title: Text("Home"),
+            ),
+            BubbleBottomBarItem(
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.dashboard, color: Colors.black,),
+              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
+              title: Text("Home"),
+            ),
+          ],
+        ),
+        body: (currentIndex == 0)
+            ? TabBarView(children: [
+                NewsTab(listType: 'best'),
+                NewsTab(listType: 'top'),
+                NewsTab(listType: 'newest'),
+              ],)
+            : (currentIndex == 1)
+            ? Icon(
+                Icons.folder_open,
+                size: 150.0,
+                color: Colors.indigo,
+              )
+            : Icon(
+                Icons.access_time,
+                size: 150.0,
+                color: Colors.deepPurple,
+              ),
       ),
     );
   }
