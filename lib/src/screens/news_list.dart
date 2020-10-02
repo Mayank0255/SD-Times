@@ -29,61 +29,79 @@ class _NewsListState extends State<NewsList> {
       child: Scaffold(
         appBar: topAppBar(),
         backgroundColor: Color(0xFF001528),
-        bottomNavigationBar: BubbleBottomBar(
-          opacity: 0.2,
-          backgroundColor: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
-          currentIndex: currentIndex,
-          hasInk: true,
-          inkColor: Colors.black12,
-          hasNotch: true,
-          onTap: changePage,
-          items: <BubbleBottomBarItem>[
-            BubbleBottomBarItem(
-              backgroundColor: Colors.red,
-              icon: Icon(Icons.dashboard, color: Colors.black,),
-              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
-              title: Text("Home"),
-            ),
-            BubbleBottomBarItem(
-              backgroundColor: Colors.red,
-              icon: Icon(Icons.dashboard, color: Colors.black,),
-              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
-              title: Text("Home"),
-            ),
-            BubbleBottomBarItem(
-              backgroundColor: Colors.red,
-              icon: Icon(Icons.dashboard, color: Colors.black,),
-              activeIcon: Icon(Icons.dashboard, color: Colors.red,),
-              title: Text("Home"),
-            ),
-          ],
-        ),
-        body: (currentIndex == 0)
-            ? TabBarView(children: [
-                NewsTab(listType: 'best'),
-                NewsTab(listType: 'top'),
-                NewsTab(listType: 'newest'),
-              ],)
-            : (currentIndex == 1)
-            ? Icon(
-                Icons.folder_open,
-                size: 150.0,
-                color: Colors.indigo,
-              )
-            : Icon(
-                Icons.access_time,
-                size: 150.0,
-                color: Colors.deepPurple,
-              ),
+        bottomNavigationBar: bottomAppBar(),
+        body: buildBody(),
       ),
+    );
+  }
+
+  Widget buildNewsPage() {
+    return TabBarView(
+      children: [
+        NewsTab(listType: 'best'),
+        NewsTab(listType: 'top'),
+        NewsTab(listType: 'newest'),
+      ],
+    );
+  }
+
+  Widget buildBody() {
+    return (currentIndex == 0)
+      ? buildNewsPage()
+      : (currentIndex == 1)
+      ? Icon(
+          Icons.folder_open,
+          size: 150.0,
+          color: Colors.indigo,
+        )
+      : Icon(
+          Icons.access_time,
+          size: 150.0,
+          color: Colors.deepPurple,
+        );
+  }
+
+  Widget bottomAppBar() {
+    return BubbleBottomBar(
+      opacity: 0.2,
+      backgroundColor: Color(0xFF001528),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+      currentIndex: currentIndex,
+      hasInk: true,
+      inkColor: Colors.white,
+      hasNotch: true,
+      onTap: changePage,
+      items: <BubbleBottomBarItem>[
+        BubbleBottomBarItem(
+          backgroundColor: Color(0xFF626EE3),
+          icon: Icon(Icons.home, color: Color.fromRGBO(255, 255, 255, 0.9),),
+          activeIcon: Icon(Icons.home, color: Color(0xFF626EE3),),
+          title: Text("Home", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        ),
+        BubbleBottomBarItem(
+          backgroundColor: Color(0xFF626EE3),
+          icon: Icon(Icons.question_answer_rounded, color: Color.fromRGBO(255, 255, 255, 0.9),),
+          activeIcon: Icon(Icons.question_answer_rounded, color: Color(0xFF626EE3),),
+          title: Text("Questions", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        ),
+        BubbleBottomBarItem(
+          backgroundColor: Color(0xFF626EE3),
+          icon: Icon(Icons.work, color: Color.fromRGBO(255, 255, 255, 0.9),),
+          activeIcon: Icon(Icons.work, color: Color(0xFF626EE3),),
+          title: Text("Jobs", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        ),
+      ],
     );
   }
 
   Widget topAppBar() {
     return AppBar(
       title: Text(
-        'News Feed',
+        (currentIndex == 0)
+        ? 'News Feed'
+        : (currentIndex == 1)
+        ? 'Question & Answers'
+        : 'Jobs',
         style: TextStyle(
           fontFamily: 'Ubuntu', 
           fontWeight: FontWeight.w600,
@@ -98,9 +116,10 @@ class _NewsListState extends State<NewsList> {
         child: Image.asset('assets/SD-Splash-Icon.png'),
       ),
       elevation: 7.0,
-      bottom: TabBar(
+      bottom: (currentIndex == 0) ? TabBar(
         unselectedLabelColor: Colors.white,
         indicatorColor: Color(0xFF6774e4),
+        indicatorSize: TabBarIndicatorSize.tab,
         labelStyle: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.w400,
@@ -112,7 +131,7 @@ class _NewsListState extends State<NewsList> {
           Tab(text: 'Top',),
           Tab(text: 'Newest',),
         ],
-      ),
+      ) : null,
       backgroundColor: Color(0xFF001528),
     );
   }
