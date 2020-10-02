@@ -4,10 +4,10 @@ import '../blocs/comments_provider.dart';
 import '../models/item_model.dart';
 import '../widgets/comment_tile.dart';
 
-class NewsDetail extends StatelessWidget {
+class DetailsScreen extends StatelessWidget {
   final int itemId;
 
-  NewsDetail({this.itemId});
+  DetailsScreen({this.itemId});
 
   Widget build(context) {
     final bloc = CommentsProvider.of(context);

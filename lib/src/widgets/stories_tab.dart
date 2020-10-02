@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'news_list_tile.dart';
+import 'stories_list_tile.dart';
 import 'refresh.dart';
 import '../blocs/stories_provider.dart';
 
-class NewsTab extends StatefulWidget {
+class StoriesTab extends StatefulWidget {
   final String listType;
 
-  NewsTab({this.listType});
+  StoriesTab({this.listType});
 
   @override
-  _NewsTabState createState() => _NewsTabState();
+  _StoriesTabState createState() => _StoriesTabState();
 }
 
-class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
+class _StoriesTabState extends State<StoriesTab> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -67,7 +67,7 @@ class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
             itemBuilder: (context, int index) {
               bloc.fetchItem(snapshot.data[index]);
 
-              return NewsListTile(
+              return StoriesListTile(
                 itemId: snapshot.data[index]
               );
             },

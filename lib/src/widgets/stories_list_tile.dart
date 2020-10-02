@@ -3,13 +3,13 @@ import 'package:SD_Times/src/blocs/stories_provider.dart';
 import 'package:flutter/material.dart';
 import '../blocs/stories_provider.dart';
 import '../models/item_model.dart';
-import '../widgets/loading_container.dart';
+import 'loading_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NewsListTile extends StatelessWidget {
+class StoriesListTile extends StatelessWidget {
   final int itemId;
 
-  NewsListTile({this.itemId});
+  StoriesListTile({this.itemId});
 
   Widget build(context) {
     final bloc = StoriesProvider.of(context);
@@ -67,11 +67,15 @@ class NewsListTile extends StatelessWidget {
 
     return ListTile(
       onTap: () async {
-        var url = item.url;
-        if (await canLaunch(url)) {
-          await launch(url);
+        if (item.descendants != null) {
+          Navigator.pushNamed(context, '/${item.id}');
         } else {
-          throw 'Could not launch $url';
+          var url = item.url;
+          if (await canLaunch(url)) {
+            await launch(url);
+          } else {
+            throw 'Could not launch $url';
+          }
         }
       },
       contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'blocs/stories_provider.dart';
 import 'blocs/comments_provider.dart';
-import 'screens/news_details.dart';
-import 'screens/news_list.dart';
+import 'screens/details_screen.dart';
+import 'screens/home_screen.dart';
 
 class App extends StatelessWidget {
   Widget build(context) {
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
     if (settings.name == '/') {
       return MaterialPageRoute(
         builder: (context) {
-          return NewsList();
+          return HomeScreen();
         }
       );
     } else {
@@ -32,7 +32,7 @@ class App extends StatelessWidget {
 
           commentsBloc.fetchItemWithComments(itemId);
 
-          return NewsDetail(
+          return DetailsScreen(
             itemId: itemId
           );
         }

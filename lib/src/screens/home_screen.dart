@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../widgets/news_tab.dart';
+import '../widgets/stories_tab.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 
-class NewsList extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _NewsListState createState() => _NewsListState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _NewsListState extends State<NewsList> {
+class _HomeScreenState extends State<HomeScreen> {
   int currentIndex;
 
   @override
@@ -39,15 +39,15 @@ class _NewsListState extends State<NewsList> {
     if (currentIndex == 0) {
       return TabBarView(
         children: [
-          NewsTab(listType: 'best'),
-          NewsTab(listType: 'top'),
-          NewsTab(listType: 'newest'),
+          StoriesTab(listType: 'best'),
+          StoriesTab(listType: 'top'),
+          StoriesTab(listType: 'newest'),
         ],
       );
     } else if (currentIndex == 1) {
-      return NewsTab(listType: 'question');
+      return StoriesTab(listType: 'question');
     } else {
-      return NewsTab(listType: 'job');
+      return StoriesTab(listType: 'job');
     }
   }
 
