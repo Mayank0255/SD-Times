@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../blocs/comments_provider.dart';
 import '../models/item_model.dart';
-import '../widgets/comment_tile.dart';
+import '../widgets/comment.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int itemId;
@@ -14,8 +14,18 @@ class DetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail'),
+        title: Text(
+          'Detail',
+          style: TextStyle(
+            fontFamily: 'Ubuntu', 
+            fontWeight: FontWeight.w600,
+            fontSize: 22.0
+          ),
+        ),
+        elevation: 7.0,
+        backgroundColor: Color(0xFF001528),
       ),
+      backgroundColor: Color(0xFF001528),
       body: buildBody(bloc),
     );
   }
@@ -39,7 +49,11 @@ class DetailsScreen extends StatelessWidget {
             future: itemFuture,
             builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
               if (!itemSnapshot.hasData) {
-                return Text('Loading...');
+                return Center(
+                  child: CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF626EE3)),
+                  ),
+                );
               }
 
               return buildList(itemSnapshot.data, snapshot.data);
@@ -71,9 +85,10 @@ class DetailsScreen extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 20.0,
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
+          color: Colors.white
         ),
-        ),
+      ),
     );
   }
 }

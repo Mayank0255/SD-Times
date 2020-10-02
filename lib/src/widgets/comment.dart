@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/item_model.dart';
-import 'package:flutter_html/flutter_html.dart';
-import '../widgets/loading_container.dart';
+import 'loading_container.dart';
+import '../helpers/parse_html.dart';
 
 class Comment extends StatelessWidget {
   final int itemId;
@@ -23,7 +23,7 @@ class Comment extends StatelessWidget {
 
         final children = <Widget>[
           ListTile(
-            title: new Html(data: item.text),
+            title: Text(parseHtmlString(item.text), style: TextStyle(color: Colors.white70),),
             subtitle: item.by == '' ? Text('[Deleted by moderator]') : Text(item.by),
             contentPadding: EdgeInsets.only(
               right: 16.0,

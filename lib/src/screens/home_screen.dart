@@ -62,25 +62,28 @@ class _HomeScreenState extends State<HomeScreen> {
       hasNotch: true,
       onTap: changePage,
       items: <BubbleBottomBarItem>[
-        BubbleBottomBarItem(
-          backgroundColor: Color(0xFF626EE3),
-          icon: Icon(Icons.home, color: Color.fromRGBO(255, 255, 255, 0.9),),
-          activeIcon: Icon(Icons.home, color: Color(0xFF626EE3),),
-          title: Text("Home", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        bottomBarItem(
+          Icon(Icons.home, color: Color.fromRGBO(255, 255, 255, 0.9),),
+          Icon(Icons.home, color: Color(0xFF626EE3),)
         ),
-        BubbleBottomBarItem(
-          backgroundColor: Color(0xFF626EE3),
-          icon: Icon(Icons.question_answer_rounded, color: Color.fromRGBO(255, 255, 255, 0.9),),
-          activeIcon: Icon(Icons.question_answer_rounded, color: Color(0xFF626EE3),),
-          title: Text("Questions", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        bottomBarItem(
+          Icon(Icons.question_answer, color: Color.fromRGBO(255, 255, 255, 0.9),), 
+          Icon(Icons.question_answer, color: Color(0xFF626EE3),)
         ),
-        BubbleBottomBarItem(
-          backgroundColor: Color(0xFF626EE3),
-          icon: Icon(Icons.work, color: Color.fromRGBO(255, 255, 255, 0.9),),
-          activeIcon: Icon(Icons.work, color: Color(0xFF626EE3),),
-          title: Text("Jobs", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+        bottomBarItem(
+          Icon(Icons.work, color: Color.fromRGBO(255, 255, 255, 0.9),), 
+          Icon(Icons.work, color: Color(0xFF626EE3),)
         ),
       ],
+    );
+  }
+
+  BubbleBottomBarItem bottomBarItem(Icon icon, Icon activeIcon) {
+    return BubbleBottomBarItem(
+      backgroundColor: Color(0xFF626EE3),
+      icon: icon,
+      activeIcon: activeIcon,
+      title: Text("Home", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
     );
   }
 
@@ -106,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Image.asset('assets/SD-Splash-Icon.png'),
       ),
       elevation: 7.0,
+      backgroundColor: Color(0xFF001528),
       bottom: (currentIndex == 0) ? TabBar(
         unselectedLabelColor: Colors.white,
         indicatorColor: Color(0xFF6774e4),
@@ -122,7 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
           Tab(text: 'Newest',),
         ],
       ) : null,
-      backgroundColor: Color(0xFF001528),
     );
   }
 }
