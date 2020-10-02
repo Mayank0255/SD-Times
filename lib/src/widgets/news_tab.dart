@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'news_list_tile.dart';
 import 'refresh.dart';
@@ -35,6 +37,16 @@ class _NewsTabState extends State<NewsTab> with AutomaticKeepAliveClientMixin {
       case 'top': {
         bloc.fetchTopIds();
         streamType = bloc.topIds;
+      }
+      break;
+      case 'job': {
+        bloc.fetchJobIds();
+        streamType = bloc.jobIds;
+      }
+      break;
+      case 'question': {
+        bloc.fetchQuestionIds();
+        streamType = bloc.questionIds;
       }
       break;
     }

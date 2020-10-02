@@ -24,6 +24,10 @@ class Refresh extends StatelessWidget {
           break;
           case 'top': await bloc.fetchTopIds();
           break;
+          case 'job': await bloc.fetchJobIds();
+          break;
+          case 'question': await bloc.fetchQuestionIds();
+          break;
         }
       },
     );

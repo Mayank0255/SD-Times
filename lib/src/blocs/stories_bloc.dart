@@ -8,6 +8,8 @@ class StoriesBloc {
   final _topIds = PublishSubject<List<int>>();
   final _newestIds = PublishSubject<List<int>>();
   final _bestIds = PublishSubject<List<int>>();
+  final _jobIds = PublishSubject<List<int>>();
+  final _questionIds = PublishSubject<List<int>>();
   final _itemsOutput = BehaviorSubject<Map<int, Future<ItemModel>>>();
   final _itemsFetcher = PublishSubject<int>();
 
@@ -15,6 +17,8 @@ class StoriesBloc {
   Stream<List<int>> get topIds => _topIds.stream;
   Stream<List<int>> get newestIds => _newestIds.stream;
   Stream<List<int>> get bestIds => _bestIds.stream;
+  Stream<List<int>> get jobIds => _jobIds.stream;
+  Stream<List<int>> get questionIds => _questionIds.stream;
   Stream<Map<int, Future<ItemModel>>> get items => _itemsOutput.stream; 
 
   // Getters in Sink
@@ -39,6 +43,16 @@ class StoriesBloc {
     _bestIds.sink.add(ids);
   }
 
+  fetchJobIds() async {
+    final ids = await _repository.fetchJobIds();
+    _jobIds.sink.add(ids);
+  }
+
+  fetchQuestionIds() async {
+    final ids = await _repository.fetchQuestionIds();
+    _questionIds.sink.add(ids);
+  }
+
   clearCache() {
     return _repository.clearCache();
   }
@@ -57,6 +71,8 @@ class StoriesBloc {
     _topIds.close();
     _newestIds.close();
     _bestIds.close();
+    _jobIds.close();
+    _questionIds.close();
     _itemsFetcher.close();
     _itemsOutput.close();
   }

@@ -49,16 +49,8 @@ class _NewsListState extends State<NewsList> {
     return (currentIndex == 0)
       ? buildNewsPage()
       : (currentIndex == 1)
-      ? Icon(
-          Icons.folder_open,
-          size: 150.0,
-          color: Colors.indigo,
-        )
-      : Icon(
-          Icons.access_time,
-          size: 150.0,
-          color: Colors.deepPurple,
-        );
+      ? NewsTab(listType: 'question')
+      : NewsTab(listType: 'job');
   }
 
   Widget bottomAppBar() {

@@ -60,7 +60,7 @@ class NewsListTile extends StatelessWidget {
               children: [
                 Padding(padding: EdgeInsets.only(top: 8),),
                 Icon(Icons.mode_comment_outlined, color: Colors.white),
-                Text('${item.descendants}', style: TextStyle(color: Colors.white))
+                Text('${item.descendants != null ? item.descendants : 0}', style: TextStyle(color: Colors.white))
               ],
             ),
       ),
