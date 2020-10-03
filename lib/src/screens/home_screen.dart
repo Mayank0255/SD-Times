@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/stories_tab.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import '../widgets/stories_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -63,14 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: changePage,
       items: <BubbleBottomBarItem>[
         bottomBarItem(
+          'Home',
           Icon(Icons.home, color: Color.fromRGBO(255, 255, 255, 0.9),),
           Icon(Icons.home, color: Color(0xFF626EE3),)
         ),
         bottomBarItem(
-          Icon(Icons.question_answer, color: Color.fromRGBO(255, 255, 255, 0.9),), 
-          Icon(Icons.question_answer, color: Color(0xFF626EE3),)
+          'Questions',
+          Icon(MaterialCommunityIcons.comment_text_multiple, color: Color.fromRGBO(255, 255, 255, 0.9),), 
+          Icon(MaterialCommunityIcons.comment_text_multiple, color: Color(0xFF626EE3),)
         ),
         bottomBarItem(
+          'Jobs',
           Icon(Icons.work, color: Color.fromRGBO(255, 255, 255, 0.9),), 
           Icon(Icons.work, color: Color(0xFF626EE3),)
         ),
@@ -78,12 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  BubbleBottomBarItem bottomBarItem(Icon icon, Icon activeIcon) {
+  BubbleBottomBarItem bottomBarItem(String text, Icon icon, Icon activeIcon) {
     return BubbleBottomBarItem(
       backgroundColor: Color(0xFF626EE3),
       icon: icon,
       activeIcon: activeIcon,
-      title: Text("Home", style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
+      title: Text(text, style: TextStyle(fontFamily: 'Ubuntu', fontWeight: FontWeight.w500, fontSize: 14.0)),
     );
   }
 
@@ -98,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TextStyle(
           fontFamily: 'Ubuntu', 
           fontWeight: FontWeight.w600,
-          fontSize: 22.0
+          fontSize: 23.0
         ),
       ),
       leading: Padding(
@@ -121,9 +126,30 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         labelColor: Color(0xFF6774e4),
         tabs: [
-          Tab(text: 'Best',),
-          Tab(text: 'Top',),
-          Tab(text: 'Newest',),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [ 
+                Icon(FontAwesome5Solid.rocket),
+                Text('  Best', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500),),
+              ],),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [ 
+                Icon(Icons.leaderboard_rounded),
+                Text('  Top', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
+              ],),
+          ),
+          Tab(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [ 
+                Icon(FontAwesome5Solid.certificate),
+                Text('  New',  style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
+              ],),
+          ),
         ],
       ) : null,
     );

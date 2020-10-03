@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:SD_Times/src/blocs/stories_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import '../blocs/stories_provider.dart';
 import '../models/item_model.dart';
 import 'loading_container.dart';
@@ -56,12 +57,19 @@ class StoriesListTile extends StatelessWidget {
         Padding(padding: EdgeInsets.only(top: 8),),
         Transform.rotate(
           angle: pi / 2,
-          child: Icon(Icons.link, color: Colors.white)
+          child: Icon(Icons.link, color: Color(0xFF626EE3))
       )]);
     } else {
       children.addAll([
-        Icon(Icons.mode_comment_outlined, color: Colors.white),
-        Text('${item.descendants}', style: TextStyle(color: Colors.white))
+        Icon(FontAwesome5Solid.comment_alt, color: Color(0xFF626EE3), size: 19.0,),
+        Text(
+          '${item.descendants}',
+          style: TextStyle(
+            color: Colors.white, 
+            fontFamily: 'Poppins', 
+            fontWeight: FontWeight.w600
+          )
+        )
       ]);
     }
 

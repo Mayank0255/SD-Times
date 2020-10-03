@@ -5,6 +5,7 @@ import '../blocs/comments_provider.dart';
 import '../models/item_model.dart';
 import '../widgets/comment.dart';
 import '../helpers/time_ago.dart';
+import '../helpers/parse_html.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int itemId;
@@ -115,6 +116,21 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+          (item.text != '') ?
+          Container(
+            padding: EdgeInsets.only(top: 24.0),
+            width: 390,
+            child: Text(
+              '${parseHtmlString(item.text)}',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontFamily: 'Open Sans',
+                fontWeight: FontWeight.w400,
+                color: Color.fromRGBO(255, 255, 255, 0.9)
+              ),
+            ),
+          ) : Container(),
           Container(
             padding: EdgeInsets.only(top: 16.0),
             width: 400,
@@ -141,6 +157,7 @@ class DetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                (item.url != null) ?
                 FlatButton.icon(
                   onPressed: () async {
                     var url = item.url;
@@ -160,7 +177,7 @@ class DetailsScreen extends StatelessWidget {
                       fontSize: 16.0
                     ),
                   ),
-                ),
+                ) : FlatButton(onPressed: null, child: null),
               ],
             )
           )
