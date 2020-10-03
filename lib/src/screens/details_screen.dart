@@ -80,11 +80,6 @@ class DetailsScreen extends StatelessWidget {
   }
 
   Widget buildTitle(ItemModel item) {
-    // print(item.type);
-    // print(item.by);
-    // print(item.text);
-    // print(item.score);
-    // print(item.url);
     return Container(
       margin: EdgeInsets.only(top: 16.0, left: 10.0, right: 10.0, bottom: 10.0),
       alignment: Alignment.topCenter,
