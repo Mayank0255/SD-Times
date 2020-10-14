@@ -12,7 +12,7 @@ Software Development Times is a cross-platform mobile app consisting of news in 
 * API used: `Hacker News API`
 * As Database: `Sqlite`
 
-#### App Installation - `[Get APK](https://drive.google.com/file/d/1wBy__RFOkYltBjbF5IUgNRTMRMpAiYKv/view?usp=sharing)`
+#### App Installation - [Get APK](https://drive.google.com/file/d/1wBy__RFOkYltBjbF5IUgNRTMRMpAiYKv/view?usp=sharing)
 
 ## Guidelines to setup
 1. Clone the repository
